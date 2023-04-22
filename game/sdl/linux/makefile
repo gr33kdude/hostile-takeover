@@ -11,9 +11,9 @@
 
 BINARY = HostileTakeover
 HTROOT := ../../..
-CC = gcc-5
-CXX = g++-5
-LD = g++-5
+CC = gcc
+CXX = g++
+LD = g++
 
 LDFLAGS=
 CPPFLAGS += -w -Wno-write-strings -fsigned-char \
