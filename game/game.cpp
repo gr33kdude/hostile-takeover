@@ -298,7 +298,7 @@ bool Game::Init(int imm)
 
 	// Temp buffer used for several things, including decompression, TBitmap compiling.
 
-	gcbScratch = 10 * 1024;
+	gcbScratch = 100 * 1024;
 	gpbScratch = new byte[gcbScratch];
 	if (gpbScratch == NULL)
 		return false;
@@ -644,7 +644,7 @@ bool Game::InitCoordMappingTables()
 {
 	// Initialize world -> pixel coord mapping table
 
-#define knSplit 32
+#define knSplit 64
 //#define knSplit 4
 	gmpPcFromWc = (short *)gmmgr.AllocPtr(2 * kwcMax);
 	if (gmpPcFromWc == NULL)
@@ -1435,7 +1435,7 @@ ddword Game::IsDataPresent(int cBpp)
 	if (CheckDatabaseVersion(pszMainDataDir, szPdb, false))
 		ddwSizes |= (((ddword)1) << 24);
 	sprintf(szPdb, "htdata%d32.pdb", cBpp);
-	if (CheckDatabaseVersion(pszMainDataDir, szPdb, false))
+	if (CheckDatabaseVersion(pszMainDataDir, szPdb, true))
 		ddwSizes |= (((ddword)1) << 32);
     
 	return ddwSizes;

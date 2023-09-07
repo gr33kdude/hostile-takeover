@@ -304,12 +304,16 @@ bool ProcessSdlEvent(base::Message *pmsg, Event *pevt)
         pevt->eType = penUpEvent;
 		pevt->x = event.button.x;
 		pevt->y = event.button.y;
+
 		break;
 		
 	case SDL_MOUSEMOTION:
         pevt->eType = penMoveEvent;
 		pevt->x = event.motion.x;
 		pevt->y = event.motion.y;
+
+        //HostOutputDebugString("SDL mouse move event! %d %d\n", pevt->x, pevt->y);
+
 		break;
 #endif
 		

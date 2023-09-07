@@ -81,7 +81,7 @@ bool Display::Init()
 	// Absolutely do not mess with SDL_FULLSCREEN if there is any chance the app
 	// will crash or stop at a breakpoint. If it does you will be lost in full
 	// screen mode! (ssh from another machine and kill the Xcode process)
-    videoflags = SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_SHOWN;
+    videoflags = SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP;
     #if defined(__IPHONEOS__) || defined(__ANDROID__)
     videoflags = videoflags | SDL_WINDOW_BORDERLESS;
     SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeRight LandscapeLeft");
@@ -104,6 +104,12 @@ bool Display::Init()
         LOG() << "Couldn't create window: " << m_cx << "x" << m_cy << " \nError: " << SDL_GetError();
         return false;
     }
+
+    // get the real window size in case fullscreen was requested
+    SDL_GetWindowSize(m_window, &m_cx, &m_cy);
+    //LOG() << "Window size: " << m_cx << ", " << m_cy;
+    props.cxWidth = m_cx;
+    props.cyHeight = m_cy;
 
     // Create renderer
     m_renderer = SDL_CreateRenderer(m_window, 0, SDL_RENDERER_TARGETTEXTURE);

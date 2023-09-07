@@ -134,8 +134,8 @@ void HostHelpers::GetSurfaceProperties(SurfaceProperties *pprops)
 {
     int cxScreen, cyScreen;
 
-    cxScreen = 800;
-    cyScreen = 600;
+    cxScreen = 1280;
+    cyScreen = 800;
 
     pprops->cxWidth = cxScreen;
     pprops->cyHeight = cyScreen;
